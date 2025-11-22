@@ -1,0 +1,2247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HopeWell - Cancer Support Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-teal: #0fa3b1;
+            --primary-coral: #ff6b6b;
+            --primary-lavender: #9d7beb;
+            --secondary-mint: #4caf50;
+            --secondary-cream: #2a2a3a;
+            --accent-gold: #ffd166;
+            --accent-purple: #6a4c93;
+            --text-dark: #e8e8e8;
+            --text-light: #b0b0b0;
+            --white: #1e1e2e;
+            --card-bg: #2d2d3d;
+            --light-bg: #363646;
+            --shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+            --shadow-lg: rgba(0, 0, 0, 0.3) 0px 10px 25px;
+            --radius: 16px;
+            --low-risk: #10b981;
+            --moderate-risk: #f59e0b;
+            --high-risk: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2a2a3a 0%, #1e1e2e 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary-teal);
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--primary-coral), var(--accent-gold));
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-teal);
+            color: var(--primary-teal);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-teal);
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-coral), var(--primary-lavender));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(42, 42, 58, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-teal);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-teal);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #363646 0%, #2a2a3a 100%);
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--text-light);
+        }
+
+        .hero-bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(15, 163, 177, 0.15);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            33% { transform: translateY(-30px) rotate(120deg) scale(1.1); }
+            66% { transform: translateY(15px) rotate(240deg) scale(0.9); }
+        }
+
+        /* Assessment Section */
+        .assessment-section {
+            background: linear-gradient(135deg, #363646 0%, #2a2a3a 100%);
+            position: relative;
+        }
+
+        .assessment-container {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .assessment-header {
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .assessment-progress {
+            height: 6px;
+            background: #3a3a4a;
+            position: relative;
+        }
+
+        .assessment-progress-bar {
+            height: 100%;
+            background: var(--primary-teal);
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .assessment-content {
+            padding: 30px;
+            min-height: 400px;
+        }
+
+        .assessment-step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .assessment-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .assessment-question {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .assessment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .assessment-option {
+            padding: 15px 20px;
+            border: 2px solid #3a3a4a;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--light-bg);
+        }
+
+        .assessment-option:hover {
+            border-color: var(--primary-teal);
+            background: rgba(15, 163, 177, 0.08);
+        }
+
+        .assessment-option.selected {
+            border-color: var(--primary-teal);
+            background: rgba(15, 163, 177, 0.12);
+        }
+
+        .option-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4a4a5a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .assessment-option.selected .option-checkbox {
+            border-color: var(--primary-teal);
+            background: var(--primary-teal);
+        }
+
+        .assessment-option.selected .option-checkbox:after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .assessment-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            background: var(--card-bg);
+        }
+
+        .assessment-result {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .risk-level {
+            padding: 20px;
+            border-radius: var(--radius);
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .risk-level.low {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--low-risk);
+        }
+
+        .risk-level.moderate {
+            background: rgba(245, 158, 11, 0.1);
+            border: 2px solid var(--moderate-risk);
+        }
+
+        .risk-level.high {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid var(--high-risk);
+        }
+
+        .risk-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .risk-low { color: var(--low-risk); }
+        .risk-moderate { color: var(--moderate-risk); }
+        .risk-high { color: var(--high-risk); }
+
+        .risk-recommendation {
+            background: var(--light-bg);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+        }
+
+        .doctor-consultation {
+            background: linear-gradient(135deg, var(--primary-coral), var(--accent-gold));
+            color: white;
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--white);
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: var(--radius);
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--primary-teal);
+            margin-bottom: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-teal);
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Chatbot Section */
+        .chatbot-section {
+            background: linear-gradient(135deg, #363646 0%, #2a2a3a 100%);
+            position: relative;
+        }
+
+        .chatbot-container {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .disclaimer {
+            background: var(--secondary-mint);
+            padding: 15px 20px;
+            font-size: 0.9rem;
+            text-align: center;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .chat-window {
+            height: 400px;
+            overflow-y: auto;
+            padding: 25px;
+            background: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            animation: messageAppear 0.3s ease;
+        }
+
+        @keyframes messageAppear {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            justify-content: flex-start;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            max-width: 75%;
+            padding: 15px 20px;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .bot-message .message-bubble {
+            background: var(--card-bg);
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message .message-bubble {
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .typing-indicator {
+            display: inline-flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-light);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            background: var(--card-bg);
+            gap: 15px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 1px solid #3a3a4a;
+            border-radius: 50px;
+            outline: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: var(--light-bg);
+            color: var(--text-dark);
+        }
+
+        .chat-input input:focus {
+            border-color: var(--primary-teal);
+            box-shadow: 0 0 0 3px rgba(15, 163, 177, 0.1);
+        }
+
+        .chat-input button {
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-input button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Live Community Section */
+        .live-community-section {
+            background: linear-gradient(135deg, #363646 0%, #2a2a3a 100%);
+            min-height: 80vh;
+            position: relative;
+        }
+
+        .community-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 25px;
+            height: 650px;
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-area {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar-header, .chat-header {
+            padding: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            color: white;
+        }
+
+        .online-users {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .user-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--light-bg);
+        }
+
+        .user-item:hover {
+            background: var(--secondary-cream);
+            transform: translateX(5px);
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.1rem;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .user-status {
+            font-size: 0.8rem;
+            color: var(--primary-teal);
+            display: flex;
+            align-items: center;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary-teal);
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+
+        .messages-container {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            background: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .live-message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            animation: messageAppear 0.3s ease;
+        }
+
+        .live-message.own {
+            justify-content: flex-end;
+        }
+
+        .live-message-bubble {
+            max-width: 75%;
+            padding: 15px 20px;
+            border-radius: 20px;
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .live-message.own .live-message-bubble {
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            color: white;
+        }
+
+        .message-sender {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        .live-message-input {
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            gap: 15px;
+            background: var(--card-bg);
+        }
+
+        .live-message-input input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 1px solid #3a3a4a;
+            border-radius: 50px;
+            outline: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: var(--light-bg);
+            color: var(--text-dark);
+        }
+
+        .live-message-input input:focus {
+            border-color: var(--primary-teal);
+            box-shadow: 0 0 0 3px rgba(15, 163, 177, 0.1);
+        }
+
+        .send-live-btn {
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-lavender));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-live-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-teal);
+            margin-bottom: 20px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--shadow-lg);
+            animation: modalSlideIn 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-teal);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #3a3a4a;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: var(--light-bg);
+            color: var(--text-dark);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary-teal);
+            box-shadow: 0 0 0 3px rgba(15, 163, 177, 0.1);
+        }
+
+        .notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 20px 25px;
+            background: var(--primary-teal);
+            color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 3000;
+            display: none;
+            animation: notificationSlideIn 0.3s ease;
+        }
+
+        @keyframes notificationSlideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Cancer Type Grid */
+        .cancer-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .cancer-type-option {
+            padding: 15px;
+            border: 2px solid #3a3a4a;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: var(--light-bg);
+        }
+
+        .cancer-type-option:hover {
+            border-color: var(--primary-teal);
+            background: rgba(15, 163, 177, 0.08);
+        }
+
+        .cancer-type-option.selected {
+            border-color: var(--primary-teal);
+            background: rgba(15, 163, 177, 0.12);
+        }
+
+        .cancer-type-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cancer-type-location {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .community-container {
+                grid-template-columns: 1fr;
+                height: 800px;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .chat-area {
+                order: 1;
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+                border-radius: 0 0 var(--radius) var(--radius);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                padding: 150px 0 100px;
+                min-height: 80vh;
+            }
+
+            .cancer-type-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .cancer-type-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    HopeWell
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#assessment">Risk Assessment</a></li>
+                    <li><a href="#chatbot">Pre-Screening</a></li>
+                    <li><a href="#live-community">Live Community</a></li>
+                    <li><a href="#" class="btn" id="loginBtn">Join Community</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bubbles" id="bubbles"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Find Strength in Community During Your Cancer Journey</h1>
+                <p>Connect with others who understand, access reliable information, and receive emotional support from a caring community of patients, survivors, and caregivers.</p>
+                <div class="hero-buttons" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#assessment" class="btn">
+                        <i class="fas fa-clipboard-check"></i>
+                        Risk Assessment
+                    </a>
+                    <a href="#chatbot" class="btn btn-secondary">
+                        <i class="fas fa-robot"></i>
+                        Pre-Screening
+                    </a>
+                    <a href="#live-community" class="btn btn-outline">
+                        <i class="fas fa-users"></i>
+                        Live Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Section -->
+    <section class="assessment-section" id="assessment">
+        <div class="container">
+            <h2 class="section-title">Cancer Risk Assessment</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px;">Take our comprehensive assessment to understand your potential cancer risk factors. This tool helps identify areas where you might benefit from lifestyle changes or medical consultation.</p>
+            
+            <div class="assessment-container">
+                <div class="assessment-header">
+                    <h3><i class="fas fa-stethoscope"></i> Cancer Risk Assessment</h3>
+                    <p>Answer honestly for the most accurate results</p>
+                </div>
+                <div class="assessment-progress">
+                    <div class="assessment-progress-bar" id="progressBar"></div>
+                </div>
+                <div class="assessment-content">
+                    <div class="assessment-step active" id="step1">
+                        <div class="assessment-question">1. What is your age group?</div>
+                        <div class="assessment-options">
+                            <div class="assessment-option" data-value="0">
+                                <div class="option-checkbox"></div>
+                                <span>Under 30 years</span>
+                            </div>
+                            <div class="assessment-option" data-value="1">
+                                <div class="option-checkbox"></div>
+                                <span>30-45 years</span>
+                            </div>
+                            <div class="assessment-option" data-value="2">
+                                <div class="option-checkbox"></div>
+                                <span>46-60 years</span>
+                            </div>
+                            <div class="assessment-option" data-value="3">
+                                <div class="option-checkbox"></div>
+                                <span>Over 60 years</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-step" id="step2">
+                        <div class="assessment-question">2. Do you have a family history of cancer?</div>
+                        <div class="assessment-options">
+                            <div class="assessment-option" data-value="0">
+                                <div class="option-checkbox"></div>
+                                <span>No family history</span>
+                            </div>
+                            <div class="assessment-option" data-value="1">
+                                <div class="option-checkbox"></div>
+                                <span>One second-degree relative (grandparent, aunt/uncle)</span>
+                            </div>
+                            <div class="assessment-option" data-value="2">
+                                <div class="option-checkbox"></div>
+                                <span>One first-degree relative (parent, sibling, child)</span>
+                            </div>
+                            <div class="assessment-option" data-value="3">
+                                <div class="option-checkbox"></div>
+                                <span>Multiple first-degree relatives</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-step" id="step3">
+                        <div class="assessment-question">3. What is your smoking status?</div>
+                        <div class="assessment-options">
+                            <div class="assessment-option" data-value="0">
+                                <div class="option-checkbox"></div>
+                                <span>Never smoked</span>
+                            </div>
+                            <div class="assessment-option" data-value="1">
+                                <div class="option-checkbox"></div>
+                                <span>Former smoker (quit more than 10 years ago)</span>
+                            </div>
+                            <div class="assessment-option" data-value="2">
+                                <div class="option-checkbox"></div>
+                                <span>Former smoker (quit within last 10 years)</span>
+                            </div>
+                            <div class="assessment-option" data-value="3">
+                                <div class="option-checkbox"></div>
+                                <span>Current smoker</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-step" id="step4">
+                        <div class="assessment-question">4. How often do you consume alcohol?</div>
+                        <div class="assessment-options">
+                            <div class="assessment-option" data-value="0">
+                                <div class="option-checkbox"></div>
+                                <span>Never or rarely</span>
+                            </div>
+                            <div class="assessment-option" data-value="1">
+                                <div class="option-checkbox"></div>
+                                <span>1-3 drinks per week</span>
+                            </div>
+                            <div class="assessment-option" data-value="2">
+                                <div class="option-checkbox"></div>
+                                <span>4-7 drinks per week</span>
+                            </div>
+                            <div class="assessment-option" data-value="3">
+                                <div class="option-checkbox"></div>
+                                <span>More than 7 drinks per week</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-step" id="step5">
+                        <div class="assessment-question">5. How would you describe your physical activity level?</div>
+                        <div class="assessment-options">
+                            <div class="assessment-option" data-value="0">
+                                <div class="option-checkbox"></div>
+                                <span>Very active (exercise 5+ times per week)</span>
+                            </div>
+                            <div class="assessment-option" data-value="1">
+                                <div class="option-checkbox"></div>
+                                <span>Moderately active (exercise 3-4 times per week)</span>
+                            </div>
+                            <div class="assessment-option" data-value="2">
+                                <div class="option-checkbox"></div>
+                                <span>Lightly active (exercise 1-2 times per week)</span>
+                            </div>
+                            <div class="assessment-option" data-value="3">
+                                <div class="option-checkbox"></div>
+                                <span>Sedentary (little to no exercise)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-step" id="step6">
+                        <div class="assessment-question">6. How would you describe your diet?</div>
+                        <div class="assessment-options">
+                            <div class="assessment-option" data-value="0">
+                                <div class="option-checkbox"></div>
+                                <span>Mostly plant-based, balanced nutrition</span>
+                            </div>
+                            <div class="assessment-option" data-value="1">
+                                <div class="option-checkbox"></div>
+                                <span>Generally healthy with occasional processed foods</span>
+                            </div>
+                            <div class="assessment-option" data-value="2">
+                                <div class="option-checkbox"></div>
+                                <span>Mixed diet with regular processed food consumption</span>
+                            </div>
+                            <div class="assessment-option" data-value="3">
+                                <div class="option-checkbox"></div>
+                                <span>Heavy on processed foods, red meat, and sugar</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-step" id="step7">
+                        <div class="assessment-question">7. Are you concerned about any specific type of cancer?</div>
+                        <div class="cancer-type-grid" id="cancerTypeGrid">
+                            <!-- Cancer types will be dynamically generated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-step" id="step8">
+                        <div class="assessment-result">
+                            <h3>Your Cancer Risk Assessment Results</h3>
+                            <div class="risk-level" id="riskResult">
+                                <!-- Results will be displayed here -->
+                            </div>
+                            <div class="risk-recommendation" id="riskRecommendation">
+                                <!-- Recommendations will be displayed here -->
+                            </div>
+                            <div class="doctor-consultation">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Important Notice</h4>
+                                <p>This assessment is for informational purposes only and is not a substitute for professional medical advice. Please consult with a healthcare provider for personalized guidance.</p>
+                                <button class="btn" style="margin-top: 15px;" onclick="window.location.href='#chatbot'">
+                                    <i class="fas fa-comment-medical"></i>
+                                    Talk to Our Health Assistant
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="assessment-navigation">
+                    <button class="btn btn-outline" id="prevBtn" disabled>
+                        <i class="fas fa-arrow-left"></i>
+                        Previous
+                    </button>
+                    <button class="btn" id="nextBtn">
+                        Next
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" id="communityMembers">2,847</div>
+                    <div class="stat-text">Community Members</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="stat-number" id="supportGroups">42</div>
+                    <div class="stat-text">Support Groups</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="stat-number" id="resourcesShared">1,256</div>
+                    <div class="stat-text">Resources Shared</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <div class="stat-number" id="onlineNow">156</div>
+                    <div class="stat-text">Online Now</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section class="chatbot-section" id="chatbot">
+        <div class="container">
+            <h2 class="section-title">Symptom Pre-Screening Chat</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px;">Our AI assistant can help you understand your symptoms and guide you on when to seek medical attention. Remember, this is not a diagnosis.</p>
+            
+            <div class="chatbot-container">
+                <div class="chatbot-header">
+                    <i class="fas fa-robot fa-2x"></i>
+                    <h3>HopeWell Assistant</h3>
+                </div>
+                <div class="disclaimer">
+                    <strong>Important:</strong> This is not a medical diagnosis. Always consult a doctor for professional medical advice.
+                </div>
+                <div class="chat-window" id="chatWindow">
+                    <div class="message bot-message">
+                        <div class="message-bubble">
+                            Hello! I'm here to help you understand your symptoms better. Remember, I'm not a doctor, but I can provide information and support. How are you feeling today?
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type your message here...">
+                    <button id="sendButton">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Community Section -->
+    <section class="live-community-section" id="live-community">
+        <div class="container">
+            <h2 class="section-title">Live Support Community</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Connect with real people who understand what you're going through. Share experiences, get support, and make meaningful connections in real-time.</p>
+            
+            <div class="community-container">
+                <!-- Sidebar with Online Users -->
+                <div class="sidebar">
+                    <div class="sidebar-header">
+                        <h3><i class="fas fa-users"></i> Online Community</h3>
+                        <p id="onlineCount">0 users online</p>
+                    </div>
+                    <div class="online-users" id="onlineUsers">
+                        <!-- Online users will appear here -->
+                    </div>
+                </div>
+
+                <!-- Chat Area -->
+                <div class="chat-area">
+                    <div class="chat-header">
+                        <h3><i class="fas fa-comments"></i> Live Community Chat</h3>
+                        <p>Real conversations, real support</p>
+                    </div>
+                    <div class="messages-container" id="messagesContainer">
+                        <div class="live-message">
+                            <div class="live-message-bubble">
+                                <div class="message-sender">HopeWell Bot</div>
+                                <div>Welcome to our live support community! This is a safe space where you can connect with others who understand your journey. Please be kind and supportive to one another.</div>
+                                <div class="message-time">Just now</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="live-message-input">
+                        <input type="text" id="messageInput" placeholder="Type your message here..." disabled>
+                        <button class="send-live-btn" id="sendLiveButton" disabled>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Features -->
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safe & Private</h3>
+                    <p>Your conversations are secure and anonymous. We prioritize your privacy and emotional safety above all else.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our community is always active. Day or night, there's always someone here to listen and support you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Peer Support</h3>
+                    <p>Connect with people who truly understand - patients, survivors, caregivers, and medical professionals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Join Our Support Community</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="userName">Your Name</label>
+                    <input type="text" id="userName" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="userRole">I am a:</label>
+                    <select id="userRole" required>
+                        <option value="">Select role</option>
+                        <option value="patient">Cancer Patient</option>
+                        <option value="survivor">Cancer Survivor</option>
+                        <option value="caregiver">Caregiver</option>
+                        <option value="family">Family Member</option>
+                        <option value="professional">Medical Professional</option>
+                        <option value="supporter">Supporter</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="userCondition">Condition (optional)</label>
+                    <input type="text" id="userCondition" placeholder="e.g., Breast Cancer, Lung Cancer">
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Join Community
+                </button>
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: var(--text-light);">
+                By joining, you agree to our <a href="#" style="color: var(--primary-teal);">Community Guidelines</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Cancer type data
+        const cancerTypes = [
+            { name: "Carcinoma", location: "Organs" },
+            { name: "Sarcoma", location: "Tissue" },
+            { name: "Leukemia", location: "Blood" },
+            { name: "Lymphoma", location: "Immunity" },
+            { name: "Melanoma", location: "Skin" },
+            { name: "Myeloma", location: "Marrow" },
+            { name: "Glioma", location: "Brain" },
+            { name: "Blastoma", location: "Embryonic" },
+            { name: "Germinoma", location: "Reproductive" },
+            { name: "Meningioma", location: "Meninges" },
+            { name: "Mesothelioma", location: "Linings" },
+            { name: "Hemangioma", location: "Vessels" },
+            { name: "Chondroma", location: "Cartilage" },
+            { name: "Osteoma", location: "Bone" },
+            { name: "Lipoma", location: "Fat" },
+            { name: "Adenoma", location: "Glands" },
+            { name: "Neuroma", location: "Nerves" },
+            { name: "Insulinoma", location: "Pancreas" },
+            { name: "Pheochromocytoma", location: "Adrenals" },
+            { name: "Carcinoid", location: "Neuroendocrine" },
+            { name: "Teratoma", location: "Multiple-Tissues" },
+            { name: "Schwannoma", location: "Nerve-Sheath" },
+            { name: "GIST", location: "Stomach-Bowel" },
+            { name: "Medulloblastoma", location: "Cerebellum" },
+            { name: "Neuroblastoma", location: "Nerve-Cells" },
+            { name: "Retinoblastoma", location: "Eye" },
+            { name: "Wilms-Tumor", location: "Kidney" },
+            { name: "Thymoma", location: "Thymus" }
+        ];
+
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Create floating bubbles in hero section
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles');
+            const colors = [
+                'rgba(15, 163, 177, 0.15)',
+                'rgba(157, 123, 235, 0.15)',
+                'rgba(255, 107, 107, 0.15)',
+                'rgba(255, 209, 102, 0.15)'
+            ];
+            
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const size = Math.random() * 80 + 20;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+                bubble.style.background = color;
+                bubble.style.animationDelay = `${Math.random() * 8}s`;
+                bubble.style.animationDuration = `${6 + Math.random() * 6}s`;
+                
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+
+        // ==================== RISK ASSESSMENT FUNCTIONALITY ====================
+        class RiskAssessment {
+            constructor() {
+                this.currentStep = 1;
+                this.totalSteps = 8;
+                this.answers = {};
+                this.selectedCancerType = null;
+                this.setupEventListeners();
+                this.updateProgress();
+                this.generateCancerTypeGrid();
+            }
+
+            setupEventListeners() {
+                // Option selection
+                document.querySelectorAll('.assessment-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        const step = option.closest('.assessment-step');
+                        step.querySelectorAll('.assessment-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        option.classList.add('selected');
+                        
+                        // Enable next button
+                        document.getElementById('nextBtn').disabled = false;
+                    });
+                });
+
+                // Navigation buttons
+                document.getElementById('prevBtn').addEventListener('click', () => this.previousStep());
+                document.getElementById('nextBtn').addEventListener('click', () => this.nextStep());
+            }
+
+            generateCancerTypeGrid() {
+                const grid = document.getElementById('cancerTypeGrid');
+                cancerTypes.forEach((type, index) => {
+                    const option = document.createElement('div');
+                    option.className = 'cancer-type-option';
+                    option.dataset.value = index;
+                    option.innerHTML = `
+                        <div class="cancer-type-name">${type.name}</div>
+                        <div class="cancer-type-location">${type.location}</div>
+                    `;
+                    option.addEventListener('click', () => {
+                        grid.querySelectorAll('.cancer-type-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        option.classList.add('selected');
+                        this.selectedCancerType = type;
+                        document.getElementById('nextBtn').disabled = false;
+                    });
+                    grid.appendChild(option);
+                });
+            }
+
+            nextStep() {
+                const currentStepElement = document.getElementById(`step${this.currentStep}`);
+                const selectedOption = currentStepElement.querySelector('.assessment-option.selected');
+                
+                if (!selectedOption && this.currentStep < this.totalSteps && this.currentStep !== 7) {
+                    this.showNotification('Please select an option to continue');
+                    return;
+                }
+
+                // Save answer
+                if (selectedOption) {
+                    this.answers[this.currentStep] = parseInt(selectedOption.getAttribute('data-value'));
+                }
+
+                if (this.currentStep < this.totalSteps) {
+                    // Move to next step
+                    currentStepElement.classList.remove('active');
+                    this.currentStep++;
+                    document.getElementById(`step${this.currentStep}`).classList.add('active');
+                    
+                    // Update buttons
+                    document.getElementById('prevBtn').disabled = false;
+                    if (this.currentStep === this.totalSteps) {
+                        document.getElementById('nextBtn').innerHTML = 'View Results <i class="fas fa-chart-bar"></i>';
+                    }
+                } else {
+                    // Show results
+                    this.showResults();
+                }
+
+                this.updateProgress();
+            }
+
+            previousStep() {
+                if (this.currentStep > 1) {
+                    document.getElementById(`step${this.currentStep}`).classList.remove('active');
+                    this.currentStep--;
+                    document.getElementById(`step${this.currentStep}`).classList.add('active');
+                    
+                    // Update buttons
+                    document.getElementById('nextBtn').disabled = false;
+                    document.getElementById('nextBtn').innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+                    if (this.currentStep === 1) {
+                        document.getElementById('prevBtn').disabled = true;
+                    }
+                }
+
+                this.updateProgress();
+            }
+
+            updateProgress() {
+                const progress = (this.currentStep / this.totalSteps) * 100;
+                document.getElementById('progressBar').style.width = `${progress}%`;
+            }
+
+            calculateRisk() {
+                let totalScore = 0;
+                for (let i = 1; i <= 6; i++) {
+                    totalScore += this.answers[i] || 0;
+                }
+                
+                const maxScore = 6 * 3;
+                const percentage = (totalScore / maxScore) * 100;
+                
+                if (percentage < 30) return 'low';
+                if (percentage < 60) return 'moderate';
+                return 'high';
+            }
+
+            showResults() {
+                const riskLevel = this.calculateRisk();
+                const resultElement = document.getElementById('riskResult');
+                const recommendationElement = document.getElementById('riskRecommendation');
+                
+                // Hide current step and show results
+                document.getElementById(`step${this.currentStep}`).classList.remove('active');
+                document.getElementById('step8').classList.add('active');
+                
+                // Update navigation buttons
+                document.getElementById('prevBtn').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'none';
+                
+                // Display results based on risk level
+                if (riskLevel === 'low') {
+                    resultElement.className = 'risk-level low';
+                    resultElement.innerHTML = `
+                        <div class="risk-title risk-low"><i class="fas fa-check-circle"></i> Low Risk</div>
+                        <p>Based on your responses, you appear to have a lower risk profile for cancer. However, regular screenings and healthy lifestyle choices are still important.</p>
+                    `;
+                    
+                    recommendationElement.innerHTML = `
+                        <h4><i class="fas fa-heart"></i> Recommendations</h4>
+                        <ul>
+                            <li>Continue with regular health check-ups and age-appropriate cancer screenings</li>
+                            <li>Maintain your healthy lifestyle habits</li>
+                            <li>Stay informed about new cancer prevention research</li>
+                            <li>Consider genetic counseling if you have specific concerns about family history</li>
+                        </ul>
+                    `;
+                } else if (riskLevel === 'moderate') {
+                    resultElement.className = 'risk-level moderate';
+                    resultElement.innerHTML = `
+                        <div class="risk-title risk-moderate"><i class="fas fa-exclamation-triangle"></i> Moderate Risk</div>
+                        <p>Your responses indicate some factors that may increase cancer risk. Consider discussing these with a healthcare provider.</p>
+                    `;
+                    
+                    recommendationElement.innerHTML = `
+                        <h4><i class="fas fa-clipboard-list"></i> Recommendations</h4>
+                        <ul>
+                            <li>Schedule a consultation with your healthcare provider to discuss your risk factors</li>
+                            <li>Consider more frequent cancer screenings based on your risk profile</li>
+                            <li>Focus on modifiable risk factors like diet, exercise, and smoking cessation</li>
+                            <li>Discuss family history with a genetic counselor if applicable</li>
+                        </ul>
+                    `;
+                } else {
+                    resultElement.className = 'risk-level high';
+                    resultElement.innerHTML = `
+                        <div class="risk-title risk-high"><i class="fas fa-exclamation-circle"></i> Higher Risk</div>
+                        <p>Your responses indicate several factors that may significantly increase cancer risk. We strongly recommend consulting with a healthcare professional.</p>
+                    `;
+                    
+                    recommendationElement.innerHTML = `
+                        <h4><i class="fas fa-user-md"></i> Recommendations</h4>
+                        <ul>
+                            <li><strong>Schedule an appointment with a healthcare provider as soon as possible</strong></li>
+                            <li>Discuss appropriate screening schedules and preventive measures</li>
+                            <li>Consider genetic testing and counseling based on family history</li>
+                            <li>Work with professionals to address modifiable risk factors</li>
+                            <li>Join our support community to connect with others managing similar risks</li>
+                        </ul>
+                    `;
+                }
+
+                // Add cancer type specific information if selected
+                if (this.selectedCancerType) {
+                    const cancerInfo = document.createElement('div');
+                    cancerInfo.className = 'risk-recommendation';
+                    cancerInfo.style.marginTop = '20px';
+                    cancerInfo.innerHTML = `
+                        <h4><i class="fas fa-info-circle"></i> Information about ${this.selectedCancerType.name}</h4>
+                        <p>${this.selectedCancerType.name} affects the ${this.selectedCancerType.location}. If you're concerned about this type of cancer, it's important to discuss specific screening options with your healthcare provider.</p>
+                    `;
+                    recommendationElement.parentNode.insertBefore(cancerInfo, recommendationElement.nextSibling);
+                }
+            }
+
+            showNotification(message) {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.style.display = 'block';
+                
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // ==================== CHATBOT FUNCTIONALITY ====================
+        const chatWindow = document.getElementById('chatWindow');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+
+        // Chatbot responses
+        const botResponses = {
+            greeting: [
+                "Hello! I'm HopeWell Assistant. I'm here to provide information and support. How are you feeling today?",
+                "Welcome! I can help you understand symptoms and guide you to appropriate resources. What's on your mind?",
+                "Hi there! I'm here to listen and provide cancer-related information. How can I assist you today?"
+            ],
+            symptoms: [
+                "I understand you're concerned about symptoms. It's important to discuss any persistent changes with a healthcare provider. Can you tell me more about what you're experiencing?",
+                "Thank you for sharing. Remember, I'm not a doctor, but I can help you understand when it might be appropriate to seek medical attention. How long have you been experiencing these symptoms?",
+                "I hear your concern about symptoms. Many symptoms have benign causes, but it's always wise to get persistent changes checked. Would you like me to help you understand when to see a doctor?"
+            ],
+            support: [
+                "It's completely normal to feel worried or anxious. Many people find comfort in talking to loved ones or joining support groups. Would you like information about support resources?",
+                "I hear you. Dealing with health concerns can be incredibly stressful. Remember to practice self-care and reach out to healthcare professionals who can provide proper guidance.",
+                "Your feelings are completely valid. Many in our community have felt the same way. Would you like to connect with others who understand what you're going through?"
+            ],
+            cancerTypes: [
+                "I can provide general information about different types of cancer. Is there a specific type you'd like to know more about?",
+                "There are many different types of cancer, each with unique characteristics and treatments. What would you like to know?",
+                "Understanding different cancer types can help you have more informed conversations with your healthcare team. What specific information are you looking for?"
+            ],
+            default: [
+                "I'm here to provide supportive information about cancer awareness. If you have specific concerns about symptoms, it's always best to consult with a healthcare professional.",
+                "Thank you for sharing. I can provide general information, but for medical advice, please consult with a doctor who can evaluate your specific situation.",
+                "I understand you're looking for information. Our community might have insights from personal experiences. Would you like to connect with them?"
+            ]
+        };
+
+        // Add message to chatbot
+        function addChatbotMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.textContent = text;
+            
+            messageDiv.appendChild(bubble);
+            chatWindow.appendChild(messageDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        // Show typing indicator in chatbot
+        function showChatbotTypingIndicator() {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.id = 'typing-indicator';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+            
+            bubble.appendChild(typingDiv);
+            messageDiv.appendChild(bubble);
+            chatWindow.appendChild(messageDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            
+            return messageDiv;
+        }
+
+        // Remove typing indicator from chatbot
+        function removeChatbotTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        // Process user message and generate bot response
+        function processUserMessage(message) {
+            const lowerMessage = message.toLowerCase();
+            let response;
+            
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                response = botResponses.greeting[Math.floor(Math.random() * botResponses.greeting.length)];
+            } else if (lowerMessage.includes('symptom') || lowerMessage.includes('pain') || lowerMessage.includes('hurt') || 
+                      lowerMessage.includes('feel') || lowerMessage.includes('unwell')) {
+                response = botResponses.symptoms[Math.floor(Math.random() * botResponses.symptoms.length)];
+            } else if (lowerMessage.includes('scared') || lowerMessage.includes('afraid') || lowerMessage.includes('worried') || 
+                      lowerMessage.includes('support') || lowerMessage.includes('help')) {
+                response = botResponses.support[Math.floor(Math.random() * botResponses.support.length)];
+            } else if (lowerMessage.includes('cancer') || lowerMessage.includes('type') || lowerMessage.includes('carcinoma') || 
+                      lowerMessage.includes('sarcoma') || lowerMessage.includes('leukemia') || lowerMessage.includes('lymphoma')) {
+                response = botResponses.cancerTypes[Math.floor(Math.random() * botResponses.cancerTypes.length)];
+            } else {
+                response = botResponses.default[Math.floor(Math.random() * botResponses.default.length)];
+            }
+            
+            return response;
+        }
+
+        // Handle sending message in chatbot
+        function sendChatbotMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message
+            addChatbotMessage(message, true);
+            userInput.value = '';
+            
+            // Show typing indicator
+            const typingIndicator = showChatbotTypingIndicator();
+            
+            // Simulate bot thinking
+            setTimeout(() => {
+                removeChatbotTypingIndicator();
+                const response = processUserMessage(message);
+                addChatbotMessage(response);
+            }, 1500);
+        }
+
+        // ==================== LIVE COMMUNITY FUNCTIONALITY ====================
+        class LiveCommunity {
+            constructor() {
+                this.users = new Map();
+                this.messages = [];
+                this.currentUser = null;
+                this.setupEventListeners();
+                this.simulateRealTimeUpdates();
+            }
+
+            setupEventListeners() {
+                // Login/Register
+                document.getElementById('loginBtn').addEventListener('click', () => this.showLogin());
+                document.getElementById('loginForm').addEventListener('submit', (e) => this.handleLogin(e));
+
+                // Message sending
+                document.getElementById('sendLiveButton').addEventListener('click', () => this.sendMessage());
+                document.getElementById('messageInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.sendMessage();
+                });
+            }
+
+            showLogin() {
+                document.getElementById('loginModal').style.display = 'flex';
+            }
+
+            hideLogin() {
+                document.getElementById('loginModal').style.display = 'none';
+            }
+
+            handleLogin(e) {
+                e.preventDefault();
+                const name = document.getElementById('userName').value;
+                const role = document.getElementById('userRole').value;
+                const condition = document.getElementById('userCondition').value;
+
+                this.currentUser = {
+                    id: 'user_' + Date.now(),
+                    name: name,
+                    role: role,
+                    condition: condition,
+                    avatar: name.split(' ').map(n => n[0]).join('').toUpperCase(),
+                    joinTime: new Date()
+                };
+
+                this.hideLogin();
+                this.connectToCommunity();
+                this.showNotification(`Welcome to the community, ${name}! You can now start chatting.`);
+            }
+
+            connectToCommunity() {
+                // Enable chat
+                document.getElementById('messageInput').disabled = false;
+                document.getElementById('sendLiveButton').disabled = false;
+
+                // Add current user to online list
+                this.addUser(this.currentUser);
+
+                // Simulate other users joining
+                this.simulateOtherUsers();
+
+                // Add welcome message
+                this.addMessage({
+                    sender: 'HopeWell Bot',
+                    text: `Welcome ${this.currentUser.name}! We're glad to have you in our supportive community.`,
+                    time: new Date(),
+                    isSystem: true
+                });
+            }
+
+            addUser(user) {
+                this.users.set(user.id, user);
+                this.updateOnlineUsers();
+            }
+
+            removeUser(userId) {
+                this.users.delete(userId);
+                this.updateOnlineUsers();
+            }
+
+            updateOnlineUsers() {
+                const onlineUsersContainer = document.getElementById('onlineUsers');
+                const onlineCount = document.getElementById('onlineCount');
+                
+                onlineUsersContainer.innerHTML = '';
+                onlineCount.textContent = `${this.users.size} users online`;
+
+                this.users.forEach(user => {
+                    const userElement = document.createElement('div');
+                    userElement.className = 'user-item';
+                    userElement.innerHTML = `
+                        <div class="user-avatar">${user.avatar}</div>
+                        <div class="user-info">
+                            <div class="user-name">${user.name}</div>
+                            <div class="user-status">
+                                <div class="status-dot"></div>
+                                ${user.role} ${user.condition ? `• ${user.condition}` : ''}
+                            </div>
+                        </div>
+                    `;
+                    onlineUsersContainer.appendChild(userElement);
+                });
+            }
+
+            sendMessage() {
+                const input = document.getElementById('messageInput');
+                const text = input.value.trim();
+                
+                if (text && this.currentUser) {
+                    const message = {
+                        sender: this.currentUser.name,
+                        text: text,
+                        time: new Date(),
+                        isOwn: true
+                    };
+                    
+                    this.addMessage(message);
+                    input.value = '';
+
+                    // Simulate responses from other users
+                    this.simulateResponses(text);
+                }
+            }
+
+            addMessage(message) {
+                const messagesContainer = document.getElementById('messagesContainer');
+                const messageElement = document.createElement('div');
+                
+                messageElement.className = `live-message ${message.isOwn ? 'own' : ''}`;
+                messageElement.innerHTML = `
+                    <div class="live-message-bubble">
+                        ${!message.isOwn ? `<div class="message-sender">${message.sender}</div>` : ''}
+                        <div>${message.text}</div>
+                        <div class="message-time">${this.formatTime(message.time)}</div>
+                    </div>
+                `;
+
+                messagesContainer.appendChild(messageElement);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+
+            simulateResponses(userMessage) {
+                // Simulate intelligent responses from community members
+                const lowerMessage = userMessage.toLowerCase();
+                const responses = this.generateResponses(lowerMessage);
+                
+                responses.forEach((response, index) => {
+                    setTimeout(() => {
+                        this.addMessage(response);
+                    }, (index + 1) * 2000);
+                });
+            }
+
+            generateResponses(message) {
+                const responses = [];
+                const communityMembers = [
+                    { name: "Sarah_M", role: "Breast Cancer Survivor", avatar: "SM" },
+                    { name: "Mike_T", role: "Lung Cancer Fighter", avatar: "MT" },
+                    { name: "Dr. Chen", role: "Oncology Counselor", avatar: "DC" },
+                    { name: "Lisa_K", role: "Caregiver", avatar: "LK" },
+                    { name: "David_R", role: "Prostate Cancer Survivor", avatar: "DR" }
+                ];
+
+                // Generate relevant responses based on message content
+                if (message.includes('chemo') || message.includes('treatment')) {
+                    responses.push({
+                        sender: "Sarah_M",
+                        text: "I just finished my chemo last month. The side effects were tough but manageable with the right medications. Hang in there!",
+                        time: new Date()
+                    });
+                    responses.push({
+                        sender: "Dr. Chen",
+                        text: "Remember to stay hydrated during treatment and don't hesitate to ask your medical team about anti-nausea medications.",
+                        time: new Date()
+                    });
+                }
+
+                if (message.includes('scared') || message.includes('afraid') || message.includes('worried')) {
+                    responses.push({
+                        sender: "Mike_T",
+                        text: "I know exactly how you feel. The uncertainty is the hardest part. This community really helped me through my darkest days.",
+                        time: new Date()
+                    });
+                    responses.push({
+                        sender: "Lisa_K",
+                        text: "As a caregiver, I've seen how overwhelming it can be. Take things one day at a time and lean on your support system.",
+                        time: new Date()
+                    });
+                }
+
+                // Default supportive responses
+                if (responses.length === 0) {
+                    const randomMember = communityMembers[Math.floor(Math.random() * communityMembers.length)];
+                    responses.push({
+                        sender: randomMember.name,
+                        text: "Thank you for sharing. I'm sending you strength and positive thoughts. You're not alone in this journey.",
+                        time: new Date()
+                    });
+                }
+
+                return responses;
+            }
+
+            simulateOtherUsers() {
+                // Simulate users joining and leaving
+                setInterval(() => {
+                    const fakeUsers = [
+                        { id: 'user_' + Date.now(), name: 'Emma_W', role: 'Ovarian Cancer', avatar: 'EW' },
+                        { id: 'user_' + Date.now(), name: 'James_P', role: 'Caregiver', avatar: 'JP' },
+                        { id: 'user_' + Date.now(), name: 'Maria_L', role: 'Thyroid Cancer', avatar: 'ML' }
+                    ];
+
+                    const randomUser = fakeUsers[Math.floor(Math.random() * fakeUsers.length)];
+                    this.addUser({
+                        ...randomUser,
+                        joinTime: new Date()
+                    });
+
+                    // Randomly remove users to simulate real activity
+                    setTimeout(() => {
+                        if (this.users.has(randomUser.id)) {
+                            this.removeUser(randomUser.id);
+                        }
+                    }, 30000);
+                }, 15000);
+            }
+
+            simulateRealTimeUpdates() {
+                // Simulate periodic community messages
+                setInterval(() => {
+                    const communityMessages = [
+                        { sender: "HopeWell Bot", text: "Reminder: Virtual support group meeting tonight at 7 PM EST. All are welcome!" },
+                        { sender: "Sarah_M", text: "Has anyone tried the new mindfulness app for cancer patients? I'm finding it really helpful for anxiety." },
+                        { sender: "Mike_T", text: "Just wanted to share some good news - my latest scan showed significant improvement! Don't lose hope everyone!" },
+                        { sender: "Dr. Chen", text: "Remember to practice self-care today. Even small moments of peace can make a big difference in your journey." }
+                    ];
+
+                    const randomMessage = communityMessages[Math.floor(Math.random() * communityMessages.length)];
+                    this.addMessage({
+                        ...randomMessage,
+                        time: new Date()
+                    });
+                }, 60000);
+            }
+
+            formatTime(date) {
+                return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+
+            showNotification(message) {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.style.display = 'block';
+                
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 4000);
+            }
+        }
+
+        // ==================== GENERAL FUNCTIONALITY ====================
+
+        // Modal functionality
+        const loginModal = document.getElementById('loginModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const closeModals = document.querySelectorAll('.close-modal');
+
+        function openModal(modal) {
+            modal.style.display = 'flex';
+        }
+
+        function closeModal(modal) {
+            modal.style.display = 'none';
+        }
+
+        loginBtn.addEventListener('click', () => openModal(loginModal));
+
+        closeModals.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                closeModal(modal);
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) closeModal(loginModal);
+        });
+
+        // Event listeners for chatbot
+        sendButton.addEventListener('click', sendChatbotMessage);
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendChatbotMessage();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Animate stats counter
+        function animateCounter(element, finalValue, duration = 2000) {
+            let start = 0;
+            const increment = finalValue / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= finalValue) {
+                    element.textContent = finalValue.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            createBubbles();
+            
+            // Animate stats
+            setTimeout(() => {
+                animateCounter(document.getElementById('communityMembers'), 2847);
+                animateCounter(document.getElementById('supportGroups'), 42);
+                animateCounter(document.getElementById('resourcesShared'), 1256);
+                animateCounter(document.getElementById('onlineNow'), 156);
+            }, 500);
+
+            // Initialize live community
+            window.liveCommunity = new LiveCommunity();
+            
+            // Initialize risk assessment
+            window.riskAssessment = new RiskAssessment();
+        });
+    </script>
+</body>
+</html>
